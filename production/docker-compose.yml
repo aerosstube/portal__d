@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  portal_d:
+    image: portal_d
+    restart: always
+    ports:
+      - '8081:8081'
+  db:
+    container_name: postgres_db
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+    ports:
+      - '5431:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+volumes:
+  db:
+    driver: local
